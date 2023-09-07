@@ -169,7 +169,7 @@ function addMessageToChat(message)
 				<span class="status blue"></span>
 			</div>
 			<div class="message">
-				${message.content}
+				${message.content.replace(/(?:\r\n|\r|\n)/g, '<br>')}
 			</div>
 		`
 	}
@@ -200,7 +200,21 @@ sendButton.addEventListener("click", async ()=>{
 			addMessageToChat(message);
 	}
 })
+textarea.addEventListener("keydown", async (e)=>
+{
+	if(e.key != "Enter" || e.shiftKey) return;
+	e.preventDefault();
+	let content = textarea.value.trim();
+	if (content != '')
+	{
+		var message = await sendMessage(selected_conversation.id, content);
+		console.log(message)
+		if(message)
+			addMessageToChat(message);
+	}
+	textarea.value = '';
 
+})
 search.addEventListener("input", ()=>{
 	query = search.value.toLowerCase();
 	conversations.forEach(conversation => {
