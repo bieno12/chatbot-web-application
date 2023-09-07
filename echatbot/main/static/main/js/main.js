@@ -8,6 +8,7 @@ const sendButton = document.getElementById("send-button");
 
 const search = document.querySelector("aside header input")
 const newConversationButton = document.querySelector("aside header button");
+const closeButton = document.querySelector("main header button");
 function scrollToBottom() {
 	const scrollOptions = {
 	  top: chat.scrollHeight,
@@ -217,7 +218,25 @@ newConversationButton.addEventListener("click", async ()=>{
 	
 }
 )
+closeButton.addEventListener("click", async ()=>{
+	const url = `conversations/${selected_conversation.id}`;
+    const response = await fetch(url, {
+		method: 'DELETE'
+	});
 
+    if (response.ok) {
+        // The request was successful.
+		console.log("deleted conversation");
+		conversations = conversations.filter((conv)=> conv.id != selected_conversation.id);
+		if (conversations.length == 0)
+			conversations.push(await newConversation("New Conversation"));
+		renderConversations();
+		selectConversation(conversations[0].id);
+        return await response.json();
+    } else {
+        // The request failed.
+    }
+})
 async function entry()
 {
 	conversations = await getConversations()
