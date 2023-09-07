@@ -40,6 +40,7 @@ main {
 }
 
 aside header {
+	height: 10%;
 	display: flex;
 	flex-wrap: wrap;
 	padding: 15px 10px;
@@ -186,9 +187,7 @@ aside li h3 {
 
 main header {
 	height: 10%;
-	padding: 30px 20px 30px 40px;
-
-
+	overflow: hidden;
 }
 
 main header>* {
@@ -291,19 +290,18 @@ main header h3 {
 
 main footer {
 	height: 10%;
-	padding: 15px;
-
+	overflow: hidden;
 }
 
 main footer textarea {
 	resize: none;
 	border: none;
-	display: inline-block;
+	display: inline;
 	width: 89%;
-	height: 80px;
+	margin-top: 5px;
+	height: 90%;
 	border-radius: 15px;
 	box-shadow: 0 0 5px 0px black;
-
 	padding: 20px;
 	font-size: 20px;
 	vertical-align: bottom;
@@ -339,19 +337,21 @@ main footer button {
 	background-color: #00000000;
 	display: inline-block;
 	width: 10%;
-	height: 80px;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-weight: bold;
-	color: #0f5884;
+	color: #4f93bd;
 	vertical-align: bottom;
-	filter: drop-shadow(2px 1px 2px #000000dd);
+	
 }
 
 main footer button:hover {
-	color: #4f93bd;
+	color: #0f5884;
 }
-
+main footer button:active {
+	color: #0f5884;
+	filter: drop-shadow(2px 1px 2px #000000dd);
+}
 main footer button:focus {
 	outline: none;
 }
